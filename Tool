@@ -1,0 +1,35 @@
+#!/bin/bash
+echo Welcome to file copier/mover tool
+echo -e "1)Move Files \n2)Copy Files"
+read -p "Which number option would you like to choose: " choice
+if [ "$choice" == "1" ]
+then
+    read -p "Enter the file path you want moved: " filepath
+    read -p "What path would would you like to move it to: " despath
+    if [[ -e "$filepath" && -d "$despath" ]]
+    then
+        mv "$filepath" "$despath"
+        echo "The file has been moved"
+    elif [[ ! -e  "$filepath"  ]]
+    then
+        echo "The file path does not exist"
+    elif [[ ! -d "$despath" ]]
+    then
+        echo "The directory does not exist"
+    fi
+elif [ "$choice" == "2" ]
+then
+    read -p "Enter the file path you wanted copied: " filepath
+    read -p "What path would would you like to move it to: " despath
+    if [[ -e "$filepath" && -d "$despath" ]]
+    then
+        cp "$filepath" "$despath"
+        echo "The file has been copied"
+ elif [[ ! -e  "$filepath"  ]]
+    then
+        echo "The file path does not exist"
+    elif [[ ! -d "$despath" ]]
+    then
+        echo "The directory does not exist"
+    fi
+fi
